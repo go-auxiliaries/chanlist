@@ -54,4 +54,33 @@ func main() {
 
 ### 2. Case list ###
 
-TBD
+```go
+package main
+
+import (
+	"context"
+	"reflect"
+	"testing"
+	"time"
+
+	"github.com/go-auxiliaries/chanlist/pkg/caselist"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func main()  {
+	boolCh := make(chan bool, 1)
+	interfaceCh := make(chan interface{}, 1)
+
+	caseList := caselist.New(0).
+		AppendSend(boolCh, true).
+		AppendSend(interfaceCh, true)
+
+	boolCh <- true
+	idx, val, ok := caseList.Select()
+	if !ok || idx != 0 || val !=true {
+		panic("it should read value from boolCh")
+    }
+}
+
+```

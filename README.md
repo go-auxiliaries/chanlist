@@ -13,8 +13,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/go-auxiliaries/chanlist/pkg/chanlist"
 	"time"
+	
+    "github.com/go-auxiliaries/chanlist/pkg/chanlist"
 )
 
 func main() {
@@ -44,7 +45,8 @@ func main() {
 	// channel at 3 got value 'false'
 	fmt.Printf("channel at %d got value '%v'\n", idx, val)
 
-	idx, val, _ = list.ToRecvCaseList().AppendDefaultCase().Select()
+	// None of channels have data, default case is going to fire
+    idx, val, _ = list.ToRecvCaseList().AppendDefaultCase().Select()
 
 	// channel at -1 got value '<nil>'
 	fmt.Printf("channel at %d got value '%v'\n", idx, val)
